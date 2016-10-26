@@ -10,17 +10,16 @@ function renderLogin(newUser) {
     </input>
     <button class="button" type="button">Login</button>
   </form>`);
-  let container = $('.container');
+  const container = $('.container');
   container.append(userLogin);
 
-  let button = $('.button');
+  const button = $('.button');
 
 
 
   $('.button').on('click', function(e) {
-  let user = $('.login').val();
-  newUser.name = user;
-  renderChat(newUser);
+  newUser.name = $('.login').val();
+  location.hash='chat';
   });
 
 }

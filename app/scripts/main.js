@@ -1,11 +1,15 @@
 import $ from 'jquery';
 import _ from 'underscore';
+import Backbone from 'backbone';
+import router from './router';
 
 import renderLogin from './login';
 import renderChat from './chat';
 import UserInfo from './session';
+import Message from './message';
 
-let newUser = new UserInfo();
 
-renderLogin(newUser);
+Backbone.history.start();
+
+
 // renderChat();

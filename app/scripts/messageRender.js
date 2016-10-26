@@ -1,7 +1,14 @@
 import $ from 'jquery';
-function messageRender(message, i, arr) {
-  let li = $(`<li class="message">${newMessage}</li>`);
+import moment from 'moment';
+import chatRender from './chat';
+import renderLogin from './login';
+
+const messageRender = (message, newUser) => {
+  let li = $(`<li class="message">${message.sender} : ${message.body} : ${moment(message.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</li>`);
   let delButton = $(`<button class="delete" type="button">Delete</button>`);
-  $('.container').append(li);
-  $('.message').append(delButton);
+  $('.room-messages').append(li);
+  if(message.sender === newUser.name) {
+  li.append(delButton);
 }
+};
+export default messageRender;

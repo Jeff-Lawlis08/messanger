@@ -2,13 +2,14 @@ import $ from 'jquery';
 
 import renderLogin from './login';
 import Message from './message';
+import messageRender from './messageRender';
+import UserInfo from './session';
+import getData from './getRefresh';
 
 function renderChat(newUser) {
 
-  $('.container').empty();
   let messageBlock = $(`
   <div class="room-messages">
-    <li></li>
   </div>
   <div class="send-message">
     <textarea class="write" type="text" placeholder="Type Message Here" value=""></textarea>
@@ -22,23 +23,20 @@ function renderChat(newUser) {
     e.preventDefault();
     console.log('hello');
     let msgContent = $('.write');
-    let newMessage = new Message(newUser, msgContent.val());
+    const newMessage = new Message(newUser.name, msgContent.val());
+    newMessage.save();
+
   });
-  newMessage.save(newMessage);
+  let deleteButton = $('.delete');
+  deleteButton.on('click', function (e) {
+    Message.delete(newMessage);
+  });
+}
 
 
     //send post to server
 
   //get posts from server
-let getSettings = {
-  url: 'http://tiny-za-server.herokuapp.com/collections/messanger/',
-  type: 'GET',
-  success: function(data, status, xhr) {
-    data.forEach(messageRender);
-  }
-};
-  $.ajax(getSettings);
-}
 
 
 
